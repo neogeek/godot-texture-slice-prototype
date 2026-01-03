@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://53yfftulyx47"]
 
 [ext_resource type="Texture2D" uid="uid://hkxi27x2dyvr" path="res://icon.svg" id="1_432jo"]
-[ext_resource type="Script" uid="uid://cgscirirxyw5i" path="res://drag_entity.gd" id="2_rleps"]
+[ext_resource type="Script" uid="uid://cgscirirxyw5i" path="res://drag_entity/drag_entity.gd" id="2_rleps"]
 
 [node name="DragEntity" type="Node2D"]
 
