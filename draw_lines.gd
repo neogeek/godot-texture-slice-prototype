@@ -3,7 +3,7 @@ extends Node2D
 var temp_line: Line2D
 
 func _input(event):
-	var input_position = get_local_mouse_position();
+	var input_position = get_global_mouse_position()
 
 	if event is InputEventMouseButton:
 		if event.pressed:
@@ -15,6 +15,9 @@ func _input(event):
 			add_child(temp_line)
 		else:
 			if temp_line:
+				print(temp_line.points.size())
+				temp_line.points = Utilities.RamerDouglasPeucker(temp_line.points, 10)
+				print(temp_line.points.size())
 				temp_line.default_color = Color.YELLOW
 				temp_line = null
 
