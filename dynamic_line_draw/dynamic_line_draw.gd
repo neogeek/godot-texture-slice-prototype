@@ -1,6 +1,7 @@
 extends Node2D
 
 var cut_line: Line2D
+var shadow_line: Line2D
 var direction_line: Line2D
 var line_length: int = 100
 
@@ -9,6 +10,12 @@ var drawing = false
 var next_cut_line: Vector2
 
 func _ready() -> void:
+	shadow_line = Line2D.new()
+	shadow_line.width = 30
+	shadow_line.default_color = Color(0, 0, 0, 0.25)
+
+	get_parent().call_deferred("add_child", shadow_line)
+
 	cut_line = Line2D.new()
 	cut_line.width = 10
 	cut_line.default_color = Color.RED
@@ -16,6 +23,8 @@ func _ready() -> void:
 	cut_line.add_point(Vector2.ONE * line_length)
 
 	get_parent().call_deferred("add_child", cut_line)
+
+	shadow_line.points = cut_line.points
 
 	direction_line = Line2D.new()
 	direction_line.width = 10
@@ -37,6 +46,8 @@ func _process(delta: float) -> void:
 		else:
 			cut_line.points[-1] = next_cut_line
 			drawing = false
+
+		shadow_line.points = cut_line.points
 		return
 
 	time += delta
