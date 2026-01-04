@@ -20,7 +20,7 @@ func _ready() -> void:
 	cut_line.width = 10
 	cut_line.default_color = Color.RED
 	cut_line.add_point(Vector2.ZERO)
-	cut_line.add_point(Vector2.ONE * line_length)
+	cut_line.add_point(Vector2.ONE * 1)
 
 	get_parent().call_deferred("add_child", cut_line)
 
@@ -36,7 +36,7 @@ func _ready() -> void:
 
 var time: float = 0.0
 var max_rotation: float = 25
-var frequency: float = 2.0
+var max_frequency: float = 2.0
 
 func _process(delta: float) -> void:
 	if drawing:
@@ -57,7 +57,7 @@ func _process(delta: float) -> void:
 
 	var base_angle = (b - a).angle()
 
-	var swing = sin(time * frequency) * deg_to_rad(max_rotation)
+	var swing = sin(time * max_frequency) * deg_to_rad(max_rotation)
 
 	direction_line.rotation = base_angle + swing
 
@@ -80,4 +80,5 @@ func _input(event):
 
 			line_length = randi_range(25, 100)
 			max_rotation = randf_range(25, 50)
+			max_frequency = randf_range(1, 3)
 			direction_line.points[-1] = Vector2.RIGHT * line_length
